@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ChangeColor : MonoBehaviour
 {
+    Renderer objRenderer;
+    [SerializeField]
+    float timeInterval =2f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        objRenderer = GetComponent<Renderer>();
+
+        InvokeRepeating("ColorChange", 1f,timeInterval);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ColorChange()
     {
-        
+        objRenderer.material.color = Random.ColorHSV();
     }
 }

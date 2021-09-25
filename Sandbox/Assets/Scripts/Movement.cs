@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField]
+    public float ySpeed=1f;
+    [SerializeField] [Range(0,5)]
+    public float yRange=1f;
 
-    public float speed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+   
+    // Update is called once per frames
     void Update()
     {
-        transform.position = new Vector3();
+        float x = transform.position.x;
+        float y = Mathf.PingPong(Time.time* ySpeed, 1) * yRange;
+        float z = transform.position.z;
+        transform.position = new Vector3(x, y, z);
     }
+   
 }
