@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] spawnPoints;
+   Transform[] spawnPoints;
     [SerializeField]
     GameObject objectPrefab;
     [SerializeField]
@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(GameObject spawn in spawnPoints)
+        foreach(Transform spawn in spawnPoints)
         {
             GameObject spawnObject = Instantiate(objectPrefab, spawn.transform.position, Quaternion.identity);
             Movement SpawnObjMov=spawnObject.GetComponent<Movement>();
