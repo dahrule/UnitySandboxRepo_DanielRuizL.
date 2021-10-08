@@ -4,45 +4,82 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   
+    [SerializeField]
+    Player player;
+    [SerializeField]
+    Spawner spawner;
+    public int recipeSize = 4;
 
+    public static GameManager singleton; //all instances of the class make reference to this unique singleton.Only one manager exists in game.
 
+    string[] catalogue;
+    public List<string> recipe=new List<string>();
 
-    public List<GameObject> recipe;
+    private void Awake()
+    {
+        singleton = this;
+
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+        }
+        if (spawner == null)
+        {
+            spawner = FindObjectOfType<Spawner>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //Create a random Recipe from Collection.
+        //Create catalogue of items
+        catalogue = Pool.singleton.GetTags();
+
+        //Create a random recipe
         CreateRandomRecipe();
-        GameObject obj = recipe[0];
-        float y=obj.transform.position.y;
-        recipe[0].transform.position = new Vector3(obj.transform.position.x, y+5, obj.transform.position.z);
 
-        //Call spawnmanager to spawn recipe;
+        spawner.PublishRecipe(recipe);
+        spawner.PublishCatalogue(catalogue);
 
-   
     }
-
-    //When  ClickBehaviour event is received:
-    //Compare recipe with clickedCollection.
-    //Update Score.
-    //Create a new random Recipe.
-    //Call SpawnManager to spawn new recipe.
-    //Enable clickBevahiour on collection objects.
 
     void CreateRandomRecipe()
     {
-        int randnum=Random.Range(0,5);
-        GameObject obj= Pool.singleton.poolediItems[0];
-        recipe.Add(obj);
-
-        obj.transform.position = new Vector3(obj.transform.position.x + 3, obj.transform.position.y, obj.transform.position.z + 3);
+        recipe.Clear();
+        for(int i=0; i<recipeSize;i++)
+        {
+            int randnum = Random.Range(0, catalogue.Length);
+            recipe.Add(catalogue[randnum]);
+        }
+        player.dish.Clear();
+        player.dishSize = recipeSize;
+        spawner.PublishRecipe(recipe);
+        Debug.Log(recipe);
+       
     }
 
-    void Compare()
+     public int Score(List<string> list)
     {
-        //GameObject.compare
+        Debug.Log("Hola");
+
+        for (int i=0; i<recipeSize; i++)
+        {
+            if (list[i] != recipe[i])
+            {
+                Debug.Log("Your dish is wrong");
+                CreateRandomRecipe();
+                return 0;
+            }
+        }
+
+        Debug.Log("Your dish is correct");
+        CreateRandomRecipe();
+        return 1;
+    }
+
+    public void Test()
+    {
+        Debug.Log("Hola");
     }
 
 }

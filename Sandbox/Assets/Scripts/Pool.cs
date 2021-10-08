@@ -20,9 +20,9 @@ public class Pool : MonoBehaviour
 
 
     //Runs before Start() is called.
-    private void Awake() 
+    private void Awake()
     {
-        singleton = this; 
+        singleton = this;
     }
 
     // Start is called before the first frame update
@@ -47,6 +47,16 @@ public class Pool : MonoBehaviour
     }
 
     //Public methods
+    public string[] GetTags()
+    {
+        string[] tags = new string[items.Count];
+        for(int i=0; i<items.Count; i++)
+        {
+            tags[i] = items[i].prefab.tag;
+        }
+        return tags;
+    }
+
 
     //Gets an item from pool. To be considered a valid item it must match the tag parameter and must be inactive. 
     public GameObject Get(string tag)
@@ -60,5 +70,11 @@ public class Pool : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject GetRandomItem()
+    {
+        int randnum = Random.Range(0, items.Count);
+        return items[randnum].prefab;
     }
 }
