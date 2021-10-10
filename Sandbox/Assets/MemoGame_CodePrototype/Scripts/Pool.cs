@@ -10,6 +10,7 @@ public class PoolItem //Represents items that can be inside the pool.
 { 
     public GameObject prefab;
     public int amount;
+    public bool expandable=true;
 }
 
 public class Pool : MonoBehaviour
@@ -23,13 +24,10 @@ public class Pool : MonoBehaviour
     private void Awake()
     {
         singleton = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         CreatePool();
     }
+
+  
 
     //Creates a pool by instantiating all pool items times thier amount value. Sets objects inactive too. Inactive objets are considered into the pool, though available to get, contrary to active objects which are considered outside the pool.
     private void CreatePool()
@@ -50,7 +48,7 @@ public class Pool : MonoBehaviour
     public string[] GetTags()
     {
         string[] tags = new string[items.Count];
-        for(int i=0; i<items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             tags[i] = items[i].prefab.tag;
         }
@@ -61,20 +59,25 @@ public class Pool : MonoBehaviour
     //Gets an item from pool. To be considered a valid item it must match the tag parameter and must be inactive. 
     public GameObject Get(string tag)
     {
-        foreach(var item in poolediItems)
+        foreach (var item in poolediItems)
         {
-            if(!item.activeInHierarchy && item.tag==tag)
+            if (!item.activeInHierarchy && item.tag == tag)
             {
                 item.SetActive(true); // Sets the item active before returning it as "it is moving it out from the pool" to be used by other script.
                 return item;
             }
         }
-        return null;
-    }
 
-    public GameObject GetRandomItem()
-    {
-        int randnum = Random.Range(0, items.Count);
-        return items[randnum].prefab;
+        foreach(PoolItem item in items)
+        {
+            if(item.prefab.tag==tag && item.expandable)
+            {
+                GameObject obj = Instantiate(item.prefab);
+                obj.SetActive(false);
+                poolediItems.Add(obj);
+                return obj;
+            }
+        }
+        return null;
     }
 }
