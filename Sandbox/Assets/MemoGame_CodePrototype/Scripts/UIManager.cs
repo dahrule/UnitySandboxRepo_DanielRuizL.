@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Class in charge of displaying the score and time count down into the screen.
 public class UIManager : MonoBehaviour
 {
     int score = 0;
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         scoreText.text = score.ToString() + " POINTS";
     }
 
+    //Receives total time in seconds and splits it into minutes and seconds.
     public void DisplayTime(float timeToDisplay)
     {
         if (timeToDisplay < 0)

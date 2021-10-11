@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//The logic of the game resides here. The class is in charge of ensuring that there is a catalog ready to be used by the recipe model, Creates a random model recipe, and sends it to be published by a publisher instance. It also creates a string array where the user's recipe attempt will be stored, compares the recipe model with the recipe attempt, and scores it. Finally, it keeps creating new random recipes until the catalog becomes disabled.
+//
 public class GameManager : MonoBehaviour
 {
     [SerializeField]

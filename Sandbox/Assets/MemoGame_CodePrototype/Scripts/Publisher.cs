@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Base clase in charge of receiving information and publishing it into the world. It does that by moving in and out objects from the pool that match the information received(lists of tags).
+//Base clase in charge of publishing the content of string arrays into the world. It receives arrays of strings, retrieves gameobjects from the pool with tags matching those strings,stores retrieved gameobjects into a collection, and then places every object in the collection into defined spawnpoints at the world.
 public class Publisher : MonoBehaviour
 {
 
-    protected GameObject[] collection;
-    public string[] itemTags; //item tags in collection.
+    protected GameObject[] collection;// stores game objects retrieved from the pool.
+    public string[] itemTags; //item tags in collection, this what the gamelogic/manager uses.
 
     [SerializeField]
-    public Transform[] spawnPoints; //World points to spawn items in collection. 
+    public Transform[] spawnPoints; //World points to spawn gameobjects from the collection. 
 
 
-    //Defines how collection items are published into the world.
+    //Defines how string arrays are matched with gameobject arrays, and places objects into the world.
     public virtual void Publish(string[] tags)
     {
-        //Initialize collection array.
+        //Initialize collection array to store game objects.
         collection = new GameObject[tags.Length];
 
-        //Gets items by tag from the pool and stores them in collection.
+        //Gets items by tag from the pool and stores them in the gameobject collection.
         for (int i = 0; i < tags.Length; i++)
         {
             collection[i] = Pool.singleton.Get(tags[i]);
         }
 
-        //Places elements from collection in the world.
+        //Places gameobjects from collection into the world.
         for (int i = 0; i < collection.Length; i++)
         {
             collection[i].transform.position = spawnPoints[i].position;
@@ -33,7 +33,7 @@ public class Publisher : MonoBehaviour
 
     }
 
-    //Returns whole collection to the pool.
+    //Returns whole collection to the pool by setting gameobjects to inactive.
     public void Depublish()
     {
         foreach (GameObject item in collection)

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//The class represents a timer.
 public class TimeCounter : MonoBehaviour
 {
     [SerializeField]
-    float timeValue = 90.0f; //the number of seconds the timer will run for.
+    float timeValue = 90.0f; //the total time in seconds the timer will run for.
 
-    //declares an event called OnTimeOver that will be called when timevalue reaches zero.
+    //Declares an event called OnTimeOver that will be called when the timer reaches zero.
     public delegate void TimeOver();
     public static event TimeOver OnTimeOver;
 
@@ -33,7 +34,7 @@ public class TimeCounter : MonoBehaviour
 
         if(OnTimeOver!=null) //Makes sure the event is not null before invoking it. Invoking an event with no suscribers causes an error.
         {
-          OnTimeOver(); //Broadcasts the OnTimeOver event for registered classes to listen.
+          OnTimeOver(); //Broadcasts the OnTimeOver event for registered classes to listen and respond.
         }
       
     }
