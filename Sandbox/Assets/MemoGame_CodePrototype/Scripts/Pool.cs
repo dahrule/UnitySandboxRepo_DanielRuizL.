@@ -6,16 +6,20 @@ using UnityEngine;
  * learn.holistic3d.com/courses.*/
 
 [System.Serializable] //Makes the class visible inside Editor.
-public class PoolItem //Represents items that can be inside the pool.
+
+//Represents items that can be inside the pool.
+public class PoolItem 
 { 
     public GameObject prefab;
     public int amount;
-    public bool expandable=true;
+    public bool expandable=true;//an expandable item means that more units of this type can be added to the pool if needed on the go.
 }
 
+//Represents a pool where all items to be used by the game code will be instantiated in advance. The pool systems replaces constantly calling instantiate and destroy methods, making the code more efficient.
 public class Pool : MonoBehaviour
 {
-    public static Pool singleton; //all instances of the class make reference to this unique singleton.
+    public static Pool singleton; //all instances of the class make reference to this unique singleton. Every class in the game can easily access the pool by using this variable without having an explicit reference to it.
+
     public List<PoolItem> items;
     public List<GameObject> poolediItems;
 
@@ -23,13 +27,13 @@ public class Pool : MonoBehaviour
     //Runs before Start() is called.
     private void Awake()
     {
-        singleton = this;
+        singleton = this; //the singleton variable references this class.
         CreatePool();
     }
 
   
 
-    //Creates a pool by instantiating all pool items times thier amount value. Sets objects inactive too. Inactive objets are considered into the pool, though available to get, contrary to active objects which are considered outside the pool.
+    //Creates a pool containing pool items x thier amount value. Sets objects inactive too. Inactive objets are considered to be inside the pool, though available to get, contrary to active objects which are considered outside the pool, or being used by the game.
     private void CreatePool()
     {
         poolediItems = new List<GameObject>();
@@ -44,7 +48,7 @@ public class Pool : MonoBehaviour
         }
     }
 
-    //Public methods
+    //Returns the tag names of every unique item (prefab) in the pool.
     public string[] GetTags()
     {
         string[] tags = new string[items.Count];
@@ -56,14 +60,14 @@ public class Pool : MonoBehaviour
     }
 
 
-    //Gets an item from pool. To be considered a valid item it must match the tag parameter and must be inactive. 
+    //Gets an item from pool by its tag name. To be considered a valid item it must match the tag parameter and must be inactive. 
     public GameObject Get(string tag)
     {
         foreach (var item in poolediItems)
         {
             if (!item.activeInHierarchy && item.tag == tag)
             {
-                item.SetActive(true); // Sets the item active before returning it as "it is moving it out from the pool" to be used by other script.
+                item.SetActive(true); // Sets the item active before returning it as "it is moving it out from the pool" to be used by other script in the game.
                 return item;
             }
         }
@@ -73,8 +77,9 @@ public class Pool : MonoBehaviour
             if(item.prefab.tag==tag && item.expandable)
             {
                 GameObject obj = Instantiate(item.prefab);
-                obj.SetActive(false);
-                poolediItems.Add(obj);
+                poolediItems.Add(obj); 
+                obj.SetActive(true); // Sets the item active before returning it as "it is moving it out from the pool" to be used by other script in the game.
+
                 return obj;
             }
         }

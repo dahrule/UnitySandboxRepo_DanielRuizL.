@@ -5,26 +5,18 @@ using UnityEngine;
 public class Recipe : Publisher
 {
     
-    public override void Publish(string[] Itemtags)
+    public override void Publish(string[] tags)
     {
-        
-           
-        
+        base.Publish(tags);
 
-        //Initialize collection array.
-        collection = new GameObject[Itemtags.Length];
-
-        //Gets items by tag from the pool and stores them in collection.
-        for (int i = 0; i < Itemtags.Length; i++)
+        //Disable click behaviour on all collection items.
+        foreach (GameObject obj in collection)
         {
-            collection[i] = Pool.singleton.Get(Itemtags[i]);
+            ClickBehaviour script = obj.GetComponent<ClickBehaviour>();
+            script.Disable();
         }
 
-        //Places elements from collection in the world.
-        for (int i = 0; i < collection.Length; i++)
-        {
-            collection[i].transform.position = spawnPoints[i].position;
-        }
     }
+
 
 }
