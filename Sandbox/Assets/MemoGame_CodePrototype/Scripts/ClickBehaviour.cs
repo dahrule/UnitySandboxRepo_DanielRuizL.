@@ -18,8 +18,8 @@ public class ClickBehaviour : MonoBehaviour
     //Runs when the user clicks on an instance of this class (i.e. a cube from the catalogue).
     private void OnMouseDown()
     {
-        if (enabled)
-        {
+        
+        
             clickCounts += 1;
             gamemanager.recipe[clickCounts - 1] = this.gameObject.tag;//Add the tagname of this object to the recipe living in the gamemanager.
 
@@ -30,7 +30,7 @@ public class ClickBehaviour : MonoBehaviour
                 clickCounts = 0;
                 gamemanager.Score();
             }
-        }
+        
         
     }
 
