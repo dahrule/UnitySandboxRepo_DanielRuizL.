@@ -9,7 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Climber : MonoBehaviour
 {
     private CharacterController characterController;
-    public static ActionBasedController climbingHand;
+    public static ActionBasedController climbingHand; 
     private ContinuosMovement continuousMovement;
 
     private ActionBasedController previousHand;
@@ -26,8 +26,9 @@ public class Climber : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (climbingHand)
+        if (climbingHand) //if a climbing hand has been assigned  by a ClimbInteractable instance.
         {
+            //Gets the velocity of the hand, comparing the displacement between previous hand position and current hand position in the Fixedupdate loop. The velocity is then applied as a vector with opposite direction. The direction of movement is opposite to the velocity direction of the hand.
             if (previousHand == null)
             {
                 previousHand = climbingHand;
@@ -51,7 +52,7 @@ public class Climber : MonoBehaviour
     private void Climb()
     {
         currentVelocity = (climbingHand.positionAction.action.ReadValue<Vector3>() - previousPos) / Time.deltaTime;
-        characterController.Move(transform.rotation * -currentVelocity * Time.deltaTime);
+        characterController.Move(transform.rotation * -currentVelocity * Time.deltaTime); // moves using the character controller component. uses the change in velocity between hand
 
         previousPos = climbingHand.positionAction.action.ReadValue<Vector3>();
     }
