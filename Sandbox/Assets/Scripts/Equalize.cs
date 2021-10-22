@@ -6,14 +6,12 @@ using UnityEngine;
 public class Equalize : MonoBehaviour
 {
     [SerializeField]
-    AudioClip pressureOnEars;
-
-
+    AudioSource source;
     // This function runs when the Interactable containing this script is selected by an Interactor working on the Pinch Layer Mask.
     public void StopEqualizeSound()
     {
-
-        Debug.Log("hAS EQUALIZE");
+        source.Stop();
+        Debug.Log("Has Ecualized");
     }
 
 

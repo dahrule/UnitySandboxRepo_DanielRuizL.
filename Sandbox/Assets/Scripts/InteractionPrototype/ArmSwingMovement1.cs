@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ArmSwingMovement : MonoBehaviour
+public class ArmSwingMovement1 : MonoBehaviour
 {
     [SerializeField]
     XRNode inputSource; //Device to track. 
@@ -26,6 +26,13 @@ public class ArmSwingMovement : MonoBehaviour
     Vector3 PlayerPositionPreviousFrame;
     Vector3 PlayerPositionCurrentFrame;
 
+
+    Vector3 ForwardPreviousRightHand;
+    Vector3 ForwardCurrentRightHand;
+    Vector3 ForwardPreviousLeftHand;
+    Vector3 ForwardCurrentLeftHand;
+
+
     Vector3 MoveDirecton;
 
     public float speed = 5f;
@@ -41,17 +48,30 @@ public class ArmSwingMovement : MonoBehaviour
         PositionPreviousFrameLeftHand = LeftHand.transform.position;
         PlayerPositionPreviousFrame = this.transform.position;
 
+        ForwardPreviousLeftHand = LeftHand.transform.forward;
+        ForwardPreviousRightHand = RightHand.transform.forward;
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
         MoveDirecton = LeftHand.transform.forward;
 
         PositionCurrentFrameLeftHand = LeftHand.transform.position;
         PositionCurrentFrameRightHand = RightHand.transform.position;
         PlayerPositionCurrentFrame = this.transform.position;
+
+        ForwardCurrentRightHand = RightHand.transform.forward;
+        ForwardCurrentLeftHand =LeftHand.transform.forward;
+
+        float dot = Vector3.Dot(ForwardPreviousRightHand, ForwardCurrentRightHand);
+
+        Debug.Log("dot= "+dot);
+
+        
 
         var PlayerDisplacement = Vector3.Distance(PlayerPositionCurrentFrame, PlayerPositionPreviousFrame);
         var LeftHandDisplacement = Vector3.Distance(PositionCurrentFrameLeftHand, PositionPreviousFrameLeftHand);
@@ -64,6 +84,9 @@ public class ArmSwingMovement : MonoBehaviour
         PlayerPositionPreviousFrame = PlayerPositionCurrentFrame;
         PositionPreviousFrameRightHand = PositionCurrentFrameRightHand;
         PositionPreviousFrameLeftHand = PositionCurrentFrameLeftHand;
+
+        ForwardPreviousLeftHand = ForwardCurrentLeftHand;
+        ForwardPreviousRightHand = ForwardCurrentRightHand;
 
 
         //Check if swimming mode button is press.
