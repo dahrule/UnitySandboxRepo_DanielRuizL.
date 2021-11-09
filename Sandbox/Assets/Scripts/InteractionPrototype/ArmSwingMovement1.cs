@@ -103,7 +103,7 @@ public class ArmSwingMovement1 : MonoBehaviour
 
         //PositionCurrentFrameRightHand =RightHand.transform.position;
 
-        //var rightHandDisplacement = Vector3.Distance(PositionPreviousFrameRightHand,PositionCurrentFrameRightHand);
+        //var rightHandDisplacement = Vector3.Distance(previousFramePosRightHand,PositionCurrentFrameRightHand);
         //MoveDirecton = this.transform.forward;
         //Vector3 force = MoveDirecton * rightHandDisplacement;
 

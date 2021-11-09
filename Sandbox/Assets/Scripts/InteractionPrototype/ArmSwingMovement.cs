@@ -18,17 +18,22 @@ public class ArmSwingMovement : MonoBehaviour
 
     bool gripPressed; 
   
-    Vector3 PositionPreviousFrameRightHand;
-    Vector3 PositionCurrentFrameRightHand;
-    Vector3 PositionPreviousFrameLeftHand;
-    Vector3 PositionCurrentFrameLeftHand;
+    Vector3 previousPosRightHand;
+    Vector3 currentPosRightHand;
+    Vector3 previousPosLeftHand;
+    Vector3 currentPosLeftHand;
 
-    Vector3 PlayerPositionPreviousFrame;
-    Vector3 PlayerPositionCurrentFrame;
+    Vector3 playerPosPreviousFrame;
+    Vector3 playerPosCurrentFrame;
 
     Vector3 MoveDirecton;
 
-    public float speed = 5f;
+    Vector3 previousFrameLeftHandRotation;
+    Vector3 currentFrameLeftHandRotation;
+   
+
+    public int angle = 30;
+    public float speed = 20f;
     private float HandSpeed;
 
 
@@ -37,10 +42,12 @@ public class ArmSwingMovement : MonoBehaviour
     {
         rg = GetComponent<Rigidbody>();
 
-        PositionPreviousFrameRightHand =RightHand.transform.position;
-        PositionPreviousFrameLeftHand = LeftHand.transform.position;
-        PlayerPositionPreviousFrame = this.transform.position;
+        previousPosRightHand =RightHand.transform.position;
+        previousPosLeftHand = LeftHand.transform.position;
+        playerPosPreviousFrame = this.transform.position;
 
+        Vector3 previousFrameLeftHandRotation=LeftHand.transform.localEulerAngles;
+       
 
     }
 
@@ -49,21 +56,40 @@ public class ArmSwingMovement : MonoBehaviour
     {
         MoveDirecton = LeftHand.transform.forward;
 
-        PositionCurrentFrameLeftHand = LeftHand.transform.position;
-        PositionCurrentFrameRightHand = RightHand.transform.position;
-        PlayerPositionCurrentFrame = this.transform.position;
+        currentPosLeftHand = LeftHand.transform.position;
+        currentPosRightHand = RightHand.transform.position;
+        playerPosCurrentFrame = this.transform.position;
 
-        var PlayerDisplacement = Vector3.Distance(PlayerPositionCurrentFrame, PlayerPositionPreviousFrame);
-        var LeftHandDisplacement = Vector3.Distance(PositionCurrentFrameLeftHand, PositionPreviousFrameLeftHand);
-        var RightHandDisplacement = Vector3.Distance(PositionCurrentFrameRightHand, PositionPreviousFrameRightHand);
+        currentFrameLeftHandRotation = LeftHand.transform.localEulerAngles;
+
+        var PlayerDisplacement = Vector3.Distance(playerPosCurrentFrame, playerPosPreviousFrame);
+        var LeftHandDisplacement = Vector3.Distance(currentPosLeftHand, previousPosLeftHand);
+        var RightHandDisplacement = Vector3.Distance(currentPosRightHand, previousPosRightHand);
+
+       var LeftHandRotationChange = currentFrameLeftHandRotation- previousFrameLeftHandRotation;
 
         HandSpeed = (LeftHandDisplacement - PlayerDisplacement) + (RightHandDisplacement - PlayerDisplacement);
 
-        if (Time.timeSinceLevelLoad > 1f) transform.position += MoveDirecton * HandSpeed * speed * Time.deltaTime;
+        //if (Time.timeSinceLevelLoad > 1f) transform.position += MoveDirecton * HandSpeed * speed * Time.deltaTime;
+        if (Time.timeSinceLevelLoad > 1f)
 
-        PlayerPositionPreviousFrame = PlayerPositionCurrentFrame;
-        PositionPreviousFrameRightHand = PositionCurrentFrameRightHand;
-        PositionPreviousFrameLeftHand = PositionCurrentFrameLeftHand;
+            if (Mathf.Abs(LeftHandRotationChange.x) > angle)
+
+                rg.AddForce(MoveDirecton * LeftHandDisplacement, ForceMode.Impulse);
+
+        //
+        // transform.position += MoveDirecton * HandSpeed * speed * Time.deltaTime; //
+        //
+        
+
+        //if (Input.GetKeyDown(KeyCode.Space)) Debug.Log("Key Down");
+        //Debug.Log(LeftHand.transform.localRotation);
+
+        playerPosPreviousFrame = playerPosCurrentFrame;
+        previousPosRightHand = currentPosRightHand;
+        previousPosLeftHand = currentPosLeftHand;
+
+        previousFrameLeftHandRotation = currentFrameLeftHandRotation;
 
 
         //Check if swimming mode button is press.
@@ -80,7 +106,7 @@ public class ArmSwingMovement : MonoBehaviour
 
         //PositionCurrentFrameRightHand =RightHand.transform.position;
 
-        //var rightHandDisplacement = Vector3.Distance(PositionPreviousFrameRightHand,PositionCurrentFrameRightHand);
+        //var rightHandDisplacement = Vector3.Distance(previousFramePosRightHand,PositionCurrentFrameRightHand);
         //MoveDirecton = this.transform.forward;
         //Vector3 force = MoveDirecton * rightHandDisplacement;
 

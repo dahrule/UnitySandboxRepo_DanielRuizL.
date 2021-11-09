@@ -21,7 +21,7 @@ public class Climber : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         continuousMovement = GetComponent<ContinuosMovement>();
 
-        Debug.Log(previousPos);
+     
     }
 
     void FixedUpdate()
