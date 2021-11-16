@@ -3157,6 +3157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiveComputer
       objectReference: {fileID: 0}
+    - target: {fileID: 8962004190259047110, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
 --- !u!4 &4646074039237490943 stripped
@@ -3177,7 +3181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022798, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022799, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_Pivot.x

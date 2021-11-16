@@ -1,6 +1,6 @@
 using UnityEngine;
 
-//Manages screen change and computer's buttons Onclick events.
+//It is in charge of switching between screens and sending events when the computer buttons are pressed.
 public class ComputerUIManager : MonoBehaviour
 {
     [SerializeField] Screen[] screens; //different screens on the computer.
@@ -34,5 +34,12 @@ public class ComputerUIManager : MonoBehaviour
         activeScreen = screens[currentIndex]; //sets the new active screen
 
         activeScreen.gameObject.SetActive(true);
+    }
+
+    public void EnterDiveMode()
+    {
+        //Enable script behaviours related to divemode(depth sensing, dive time, temperature sensing); 
+        //Disable active screen
+        //Enable divescreen
     }
 }

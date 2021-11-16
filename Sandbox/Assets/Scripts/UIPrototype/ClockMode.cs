@@ -31,7 +31,7 @@ public class ClockMode : MonoBehaviour
         while (true)
         {
             UpdateSystemDateTime();
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(60f);
         }
     }
 
