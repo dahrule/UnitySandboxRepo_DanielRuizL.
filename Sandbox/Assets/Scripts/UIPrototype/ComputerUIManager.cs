@@ -3,10 +3,10 @@ using UnityEngine;
 //It is in charge of switching between screens and sending events when the computer buttons are pressed.
 public class ComputerUIManager : MonoBehaviour
 {
-    [SerializeField] Screen[] screens; //different screens on the computer.
+    [SerializeField] Screen[] screens; //stores all different screens on the computer.
 
     [Tooltip("starting index")]
-    [SerializeField] int currentIndex = 0;
+    [SerializeField] int currentIndex = 0; //starting scree
 
     public Screen activeScreen;
     public Screen ActiveScreen { get { return activeScreen; } }
@@ -36,10 +36,14 @@ public class ComputerUIManager : MonoBehaviour
         activeScreen.gameObject.SetActive(true);
     }
 
-    public void EnterDiveMode()
+    //called on a button OnClick event.
+    public void HandleUpBottonPress()
     {
-        //Enable script behaviours related to divemode(depth sensing, dive time, temperature sensing); 
-        //Disable active screen
-        //Enable divescreen
+        activeScreen.HandleUpButtonPress();
+    }
+
+    public void HandleDownBottonPress()
+    {
+        activeScreen.HandleDownButtonPress();
     }
 }

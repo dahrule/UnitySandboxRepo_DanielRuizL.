@@ -266,7 +266,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -290,7 +290,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.02
+    widthMultiplier: 0.0099
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -364,9 +364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LineWidth: 0.02
+  m_LineWidth: 0.0099
   m_OverrideInteractorLineLength: 1
-  m_LineLength: 10
+  m_LineLength: 3
   m_WidthCurve:
     serializedVersion: 2
     m_Curve:
@@ -422,32 +422,32 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 1, g: 0.5588235, b: 0.5588235, a: 0}
+    key1: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 1, g: 0.5588235, b: 0.5588235, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 964
+    ctime2: 4433
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
     atime0: 0
     atime1: 65535
-    atime2: 0
+    atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   m_SmoothMovement: 0
   m_FollowTightness: 10
@@ -3115,51 +3115,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0955
+      value: 0.0372
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1133
+      value: 0.0073
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0865
+      value: -0.1159
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8962004190259047110, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_Name
       value: DiveComputer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962004190259047110, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
@@ -3181,7 +3177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022798, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022799, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_Pivot.x
