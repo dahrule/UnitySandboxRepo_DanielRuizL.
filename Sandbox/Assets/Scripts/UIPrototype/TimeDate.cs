@@ -13,6 +13,8 @@ public class TimeDate : MonoBehaviour
    
     private Dictionary<string, string> dateTime = new Dictionary<string, string>();
 
+    private IEnumerator dateTimeUpdate; //variable to store the coroutine in charge of updating the date and time.
+
     public static event Action<Dictionary<string, string>> OnTimeUpdate;
 
     public static TimeDate singleton;
@@ -20,26 +22,26 @@ public class TimeDate : MonoBehaviour
     private void Awake()
     {
         singleton = this;
+        dateTimeUpdate = DateTimeUpdateRoutine();
     }
     private void Start()
     {
-        ReadSystemDateTime();
-        FormatDateTime();
-        OnTimeUpdate?.Invoke(dateTime);
+        //ReadSystemDateTime();
+        //FormatDateTime();
+        //OnTimeUpdate?.Invoke(dateTime);
     }
     private void OnEnable()
     {
-        StartCoroutine(DateTimeRoutine());
+        StartCoroutine(dateTimeUpdate);
     }
     private void OnDisable()
     {
-        StopCoroutine(DateTimeRoutine());
+        StopCoroutine(dateTimeUpdate);
     }
 
     // Coroutine that Reads and Displays Date-Time every minute.
-    private IEnumerator DateTimeRoutine()
+    private IEnumerator DateTimeUpdateRoutine()
     {
-
         while (true)
         {
             ReadSystemDateTime();
@@ -57,7 +59,7 @@ public class TimeDate : MonoBehaviour
         date = DateTime.Today.Date;
     }
 
-    //Reference https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0 for formating options.
+    //Reference for formating options: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=net-6.0 
     private void FormatDateTime()
     {
         String time_string;

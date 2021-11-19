@@ -6,15 +6,15 @@ using System;
 public class DepthSensor : MonoBehaviour
 {
     [Tooltip("Reference point to measure depth (m).")]
-    [SerializeField] Transform surface; //surface reference point.
+    [SerializeField] Transform surface;
 
-    [Tooltip("Time interval in seconds in which depth is measured relative to the surface")]
-    [SerializeField] float sensingTime = 1f; //the time interval in seconds in which depth is measured relative to the surface.
+    [Tooltip("Time update interval in seconds in which depth is measured relative to the surface")]
+    [SerializeField] float updateInterval = 1f; 
 
     private IEnumerator depthSense; //variable to store the coroutine in charge of measuring depth in the -sensingTime- interval.
 
     private float depth; //stores the updated depth value.
-    private float maxDepth; //stores the maximum depth value reached until the last measured time. 
+
     public float Depth { get { return depth; } }
 
     public static event Action<float> OnDepthChange; //event that notifies when depth has significantly changed and returns the updated depth value.
@@ -23,9 +23,10 @@ public class DepthSensor : MonoBehaviour
     //Initializes the coroutine variable when the script instance is being loaded. Note that the coroutine runs later when the object is enabled.
     private void Awake()
     {
-        depthSense = DepthSenseRoutine(sensingTime);
+        depthSense = DepthSenseRoutine(updateInterval);
 
-        //TO DO. Handle if no surface object is given.
+        //TO DO.
+              //Handle if no surface object is given.
     }
 
     //When the object containing this script becomes enabled and active, the coroutine -depth sense- starts runnnig.
@@ -46,7 +47,6 @@ public class DepthSensor : MonoBehaviour
         {
             depth = Mathf.Abs(this.transform.position.y-surface.position.y);
             
-
             // TO CHECK: Probably is not neccesary to do the following check condition....
             //OnDepthChange is only invoked if depth has significantly changed (ie. first decimal after point changes). This is to reduce the total number of event calls.
             depth = RoundtoTens(depth);

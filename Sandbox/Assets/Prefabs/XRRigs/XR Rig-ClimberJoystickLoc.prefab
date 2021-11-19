@@ -266,7 +266,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3109,6 +3109,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6190354206950337778}
     m_Modifications:
+    - target: {fileID: 960738660568303137, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767784913154463403, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767784913154463403, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767784913154463403, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3278940960218183808}
+    - target: {fileID: 6767784913154463403, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962004190104034784, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 6190354205577252839}
     - target: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3153,9 +3177,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8962004190259047106, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: startingScreen
+      value: 
+      objectReference: {fileID: 1284938592378449280}
     - target: {fileID: 8962004190259047110, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
       propertyPath: m_Name
       value: DiveComputer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962004191010058089, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
@@ -3164,6 +3196,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8962004190259047105, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
   m_PrefabInstance: {fileID: 4333946001365258814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3278940960218183808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1271254808410565310, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+  m_PrefabInstance: {fileID: 4333946001365258814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1284938592378449280 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3310216346317471678, guid: b4bcaa2f5dcc2724480bfb8103b5cc69, type: 3}
+  m_PrefabInstance: {fileID: 4333946001365258814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278940960218183808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ef5e272df0bbd4fab9d8650c4aaab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6490297597215112885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3177,7 +3225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022798, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151414199165022799, guid: b7e1946efb2f7914fb041588aca45c28, type: 3}
       propertyPath: m_Pivot.x
