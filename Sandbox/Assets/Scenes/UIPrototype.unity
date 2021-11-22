@@ -558,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046238307608954005, guid: dec3ea5f2e9cf464a8b69e63b5357c05, type: 3}
       propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: set_material
+      value: set_fontMaterial
       objectReference: {fileID: 0}
     - target: {fileID: 7046238307608954005, guid: dec3ea5f2e9cf464a8b69e63b5357c05, type: 3}
       propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046238307608954005, guid: dec3ea5f2e9cf464a8b69e63b5357c05, type: 3}
       propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.Graphic, UnityEngine.UI
+      value: TMPro.TMP_Text, Unity.TextMeshPro
       objectReference: {fileID: 0}
     - target: {fileID: 7046238307608954005, guid: dec3ea5f2e9cf464a8b69e63b5357c05, type: 3}
       propertyPath: OnTimeOver.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
